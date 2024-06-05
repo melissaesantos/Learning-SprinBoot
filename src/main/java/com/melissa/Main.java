@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+//
 @SpringBootApplication
 //needed for get,post,..mapping will be exposed as rest endpoints that clients can call
 @RestController
@@ -15,8 +15,13 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 //rest endpoint that clients can use as get requests
-    @GetMapping("/")
-    public String greet(){
-        return "Hello";
+    //local host 8080 is the root when /
+    @GetMapping("/greet")
+    public GreetResponse greet(){
+        //returns a JSON object
+        return new GreetResponse("Hello World");
     }
+    //this is a class
+
+    record GreetResponse(String greet){}
 }
