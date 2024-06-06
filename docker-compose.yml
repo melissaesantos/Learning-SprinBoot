@@ -1,0 +1,27 @@
+#we want a postgres instance running on docker
+
+services:
+  db:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: melissa
+      POSTGRES_PASSWORD: password
+      #this is where we store data
+      PGDATA: /data/postgres
+    volumes:
+      -db:/data/postgres
+    #expose the port
+    ports:
+      #5332 to 5432 if you have apostgres instance running locally
+      #then there is no conflicts, it connects to the local one not the one we have
+      - "5332:5432"
+    networks:
+      -db
+    restart: unless-stopped
+networks:
+  db:
+    driver: bridge
+
+  volumes:
+    db:
