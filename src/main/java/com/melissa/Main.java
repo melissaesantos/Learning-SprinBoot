@@ -26,19 +26,21 @@ public class Main {
         //this is also the response we want to send back to the client
         GreetResponse response= new GreetResponse("Hello World",
                 List.of("Java", "Golang", "JavaScript"),
-                new Person("Alex")
+                new Person("Alex",25,30_000)
                 );
         return response;
     }
-    record Person(String name){}
+    record Person(String name, int age, double savings){}
 
     //this is a class
     //record is a class that helps us achieve immutability
     record GreetResponse(
+            //these are the keys and in the greet() method we have the values
             String greet,
             List<String> favProgrammingLanguages,
             Person person
     ) {}
+//this is what Jackson is doing for us: It turns the Java objects into JSOn objecs without us having to do anything
 
 
 
