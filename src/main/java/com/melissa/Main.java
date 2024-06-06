@@ -5,11 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
+import java.util.List;
+//import java.util.Objects;
 
 //
 @SpringBootApplication
-//needed for get,post,..mapping will be exposed as rest endpoints that clients can call
+//needed for get,post,mapping will be exposed as rest endpoints that clients can call
 @RestController
 public class Main {
     // inorder for this to be a spring boot application we have to add a couple of things
@@ -22,40 +23,57 @@ public class Main {
     @GetMapping("/greet")
     public GreetResponse greet(){
         //returns a JSON object
-        return new GreetResponse("Hello World");
+        //this is also the response we want to send back to the client
+        GreetResponse response= new GreetResponse("Hello World",
+                List.of("Java", "Golang", "JavaScript"),
+                new Person("Alex")
+                );
+        return response;
     }
+    record Person(String name){}
+
     //this is a class
     //record is a class that helps us achieve immutability
-    //record GreetResponse(String greet){}
+    record GreetResponse(
+            String greet,
+            List<String> favProgrammingLanguages,
+            Person person
+    ) {}
+
+
+
+
+
+
     // the class GreetResponse is the same as doing record GreetResponse{}
-    class GreetResponse {
-        private final String greet;
-
-        GreetResponse(String greet) {
-            this.greet = greet;
-        }
-
-        public String getGreet() {
-            return greet;
-        }
-
-        @Override
-        public String toString() {
-            return "GreetResponse{"+
-                    "greet='" + greet + '\''+ '}';
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            GreetResponse that = (GreetResponse) o;
-            return Objects.equals(greet, that.greet);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(greet);
-        }
-    }
+//    class GreetResponse {
+//        private final String greet;
+//        private
+//        GreetResponse(String greet) {
+//            this.greet = greet;
+//        }
+//
+//        public String getGreet() {
+//            return greet;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return "GreetResponse{"+
+//                    "greet='" + greet + '\''+ '}';
+//        }
+//
+//        @Override
+//        public boolean equals(Object o) {
+//            if (this == o) return true;
+//            if (o == null || getClass() != o.getClass()) return false;
+//            GreetResponse that = (GreetResponse) o;
+//            return Objects.equals(greet, that.greet);
+//        }
+//
+//        @Override
+//        public int hashCode() {
+//            return Objects.hashCode(greet);
+      // }
+    //}
 }
