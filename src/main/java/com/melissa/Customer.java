@@ -1,9 +1,22 @@
 package com.melissa;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 //This is out MODEL
-public class Customer {
 
+@Entity
+public class Customer {
+    @Id
+    @SequenceGenerator(
+            name = "customer_id_sequence",
+            sequenceName = "customer_id_sequence"
+    )
+    //we want this to be based off of the sequence
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence"
+    )
     private Integer id;
     private String name;
     private String email;
