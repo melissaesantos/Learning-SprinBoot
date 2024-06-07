@@ -9,6 +9,7 @@ services:
     volumes:
       - db:/data/postgres
     ports:
+      #if someon has postgress downloaded on their computer it connects to that db
       - "5332:5432"
     networks:
       - db
