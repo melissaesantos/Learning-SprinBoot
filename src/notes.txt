@@ -1,1 +1,8 @@
 I will be writing my notes here and commands used to make this run
+command:
+docker ps               :tells you whats running
+ctrl + l                :clears the terminal
+
+docker exec -it postgres bash  : allows us to execute shell commands within the container
+^ for this above to create the database I went into my postgresql app and added the database through my local terminal
+I tried doing it through here but I just couldn't connect the servers together
