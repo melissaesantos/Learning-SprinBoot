@@ -10,12 +10,14 @@ public class Customer {
     @Id
     @SequenceGenerator(
             name = "customer_id_sequence",
-            sequenceName = "customer_id_sequence"
+            sequenceName = "customer_id_sequence",
+            allocationSize = 1
     )
     //we want this to be based off of the sequence
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "customer_id_sequence"
+
     )
     private Integer id;
     private String name;

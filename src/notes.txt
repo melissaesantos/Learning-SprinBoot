@@ -9,3 +9,8 @@ I tried doing it through here but I just couldn't connect the servers together
 
 \c customer
 You are now connected to database "customer" as user "melissasantos".
+
+
+when you lookup the database in the terminal that is you interacting with it
+vs
+when using postman it is going through out API and getting data back
