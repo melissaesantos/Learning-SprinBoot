@@ -17,3 +17,10 @@ when using postman it is going through out API and getting data back
 
 POST is for adding a new resource.
     -the source will be in this JSON object
+
+
+Type this into the terminal in the customer data base to insert into the data base:
+INSERT INTO customer(id,name,email,age)
+VALUES (nextval('customer_id_sequence'),'Tyler','tpagela@ucsd.edu',22);
+
+localhost:8080/api/v1/customers
