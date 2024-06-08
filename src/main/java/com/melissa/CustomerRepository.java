@@ -6,4 +6,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     //this allows us to perform all the CRUD applications
 
+
 }

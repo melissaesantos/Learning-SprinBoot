@@ -48,10 +48,22 @@ public class Main {
     }
     //DELETING CUSTOMER
     @DeleteMapping("{customerId}")
+    //@pathvariable makes it so that in postman if we do
+    // /customer/1 it will delete the customer with ID 1
     public void deleteCustomer(@PathVariable("customerId")Integer id ){
         //you can add logic here and see if the customer exists or not
         //we now need to invoke our repository
         customerRepository.deleteById(id.longValue());
+    }
+    @PutMapping("{customerId}")
+    public void updateCustomer(@PathVariable("customerId") Integer id, @RequestBody UpdateCustomerRequest request){
+        Customer customer = customerRepository.findById(id.longValue())
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+        customer.setName(request.getName());
+        customer.setEmail(request.getEmail());
+        customer.setAge(request.getAge());
+        customerRepository.save(customer);
     }
 
 //rest endpoint that clients can use as get requests

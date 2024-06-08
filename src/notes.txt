@@ -32,3 +32,7 @@ Now we are learning how to DELETE:
 //command you type into post man
 localhost:8080/api/v1/customers/1
 ^that deletes the customer with id:1
+
+
+EXCERSICE:they want us to update an existing customer
+for that we need to use ; @PutMapping
