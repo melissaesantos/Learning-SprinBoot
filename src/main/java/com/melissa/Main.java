@@ -13,9 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/customers")
 public class Main {
-
+//we are now doing CRUD operations
     private final CustomerRepository customerRepository;
-
+    //this is us CREATING it
     public Main(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
@@ -24,10 +24,12 @@ public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
+    //this allows us to connect to postman
     @GetMapping
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
     }
+
     record newCustomerRequest(
             String name,
             String email,
@@ -35,6 +37,7 @@ public class Main {
     ){
 
     }
+    //handles post requests
     @PostMapping
     public void addCustomer(@RequestBody newCustomerRequest request) {
         Customer customer = new Customer();
@@ -43,6 +46,14 @@ public class Main {
         customer.setAge(request.age());
         customerRepository.save(customer);
     }
+    //DELETING CUSTOMER
+    @DeleteMapping("{customerId}")
+    public void deleteCustomer(@PathVariable("customerId")Integer id ){
+        //you can add logic here and see if the customer exists or not
+        //we now need to invoke our repository
+        customerRepository.deleteById(id.longValue());
+    }
+
 //rest endpoint that clients can use as get requests
     //local host 8080 is the root when /
 //    @GetMapping("/greet")
